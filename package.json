@@ -1,0 +1,19 @@
+{
+  "name": "prezo-inquirex",
+  "version": "1.0.0",
+  "description": "Inquirex presentation — Deterministic DSL meets Probabilistic LLM",
+  "private": true,
+  "scripts": {
+    "build": "npm build --files '*.html, *.md, assets/**/*'",
+    "dev": "npx browser-sync start --server --files '*.html, *.md, assets/**/*' --port 8000",
+    "serve": "npx serve .",
+    "print-pdf": "npx decktape reveal http://localhost:3000?print-pdf inquirex.pdf",
+    "pdf": "npx decktape reveal http://localhost:3000?print-pdf inquirex.pdf"
+  },
+  "dependencies": {
+    "reveal.js": "^5.2.1"
+  },
+  "devDependencies": {
+    "decktape": "3.16.0"
+  }
+}

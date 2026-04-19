@@ -1,0 +1,9 @@
+/coverage
+.vite/
+**/.DS_Store
+node_modules/
+.env
+*.db
+.DS_Store
+*.egg-info/
+/pdfs
