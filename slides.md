@@ -45,7 +45,7 @@
 
 </div>
 
-<img src="assets/img/mermaid-04.png" width="40%" class="image-with-shadow">
+<img src="assets/img/mermaid-04.png" width="30%" class="image-with-shadow">
 
 ---
 
@@ -119,7 +119,7 @@ A qualifying questionnaire is a nothing but a **directed graph** where:
 
 ## Base Gem
 
-### inquirexf
+### inquirex
 
 <br />
 

@@ -1,3 +1,4 @@
+/dist
 /coverage
 .vite/
 **/.DS_Store

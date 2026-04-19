@@ -1,5 +1,9 @@
 # Inquirex Presentation — Justfile
 
+[no-exit-message]
+recipes:
+    @just --choose
+
 # Default task
 default: serve
 

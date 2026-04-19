@@ -4,7 +4,7 @@
   "description": "Inquirex presentation — Deterministic DSL meets Probabilistic LLM",
   "private": true,
   "scripts": {
-    "build": "npm build --files '*.html, *.md, assets/**/*'",
+    "build": "bash build.sh",
     "dev": "npx browser-sync start --server --files '*.html, *.md, assets/**/*' --port 8000",
     "serve": "npx serve .",
     "print-pdf": "npx decktape reveal http://localhost:3000?print-pdf inquirex.pdf",
