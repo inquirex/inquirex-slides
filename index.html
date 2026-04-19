@@ -76,6 +76,12 @@
     <!-- Typewriter effect for the "Nothing combines" slide -->
     <script src="assets/js/typewriter.js"></script>
 
+    <!-- Responsive dropdown navigation for narrow viewports -->
+    <script src="assets/js/mobile-nav.js"></script>
+
+    <!-- Slide-title → scroll-view anchor links -->
+    <script src="assets/js/title-links.js"></script>
+
     <script>
       // ?pdf in the URL marks the deck as a PDF-export render.
       // Adds html.pdf-mode so CSS can disable our custom overrides
@@ -132,6 +138,11 @@
         setTimeout(tick, 400);
       })();
 
+      // `?view=scroll` switches reveal.js into its built-in scroll view —
+      // all slides stacked vertically, full-width, no arrow controls.
+      // Used as the target of the title-link anchors (see title-links.js).
+      const viewParam = new URLSearchParams(window.location.search).get('view');
+
       Reveal.initialize({
         hash: true,
         slideNumber: 'c/t',
@@ -141,6 +152,9 @@
         backgroundTransition: 'fade',
         width: 1280,
         height: 720,
+        view: viewParam === 'scroll' ? 'scroll' : null,
+        scrollLayout: 'full',
+        scrollActivationWidth: 900, // auto-switch to scroll view on narrow viewports
         margin: 0.08,
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
       })

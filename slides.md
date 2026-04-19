@@ -102,11 +102,11 @@ A qualifying questionnaire is a nothing but a **directed graph** where:
 
 <br/>
 
-1. LLM extracts **what it can** —  (probabilistic, from free text)
+2. LLM extracts **what it can** —  (probabilistic, from free text)
 
 <br/>
 
-1. Engine asks **only what's left** — (skip_if + rule evaluation)
+3. Engine asks **only what's left** — (skip_if + rule evaluation)
 
 </div>
 ---
@@ -121,17 +121,19 @@ A qualifying questionnaire is a nothing but a **directed graph** where:
 
 ### inquirex
 
-<br />
-
 [https://github.com/inquirex/inquirex](https://github.com/inquirex/inquirex)
 
 ---
+
+<br/>
+
+<br/>
 
 # Inquirex<br />In Action
 
 ---
 
-### The Inquiry (Intake Form) is basically Conversational DSL
+### The Conversational DSL
 
 ```ruby
 Inquirex.define id: "tax-intake", version: "1.0.0" do

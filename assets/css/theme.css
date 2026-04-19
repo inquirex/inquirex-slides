@@ -564,6 +564,190 @@ body {
 }
 
 /* -------------------------------------------------------------------------
+ * Responsive mobile navigation (see assets/js/mobile-nav.js)
+ *
+ * On viewports ≤ 900px the hamburger button appears top-right, reveal's
+ * native arrow controls are hidden, and the dropdown exposes Prev/Next/
+ * Overview plus a jump-to-slide list.
+ * ------------------------------------------------------------------------- */
+
+.mobile-nav {
+  display: none; /* shown only under the narrow media query below */
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 100;
+  font-family: 'Dosis', 'Helvetica Neue', sans-serif;
+}
+
+.mobile-nav-toggle {
+  width: 46px;
+  height: 46px;
+  background: rgba(20, 12, 4, 0.82);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.mobile-nav-toggle:hover,
+.mobile-nav-toggle:focus-visible {
+  background: rgba(40, 24, 10, 0.9);
+  border-color: var(--brand);
+  outline: none;
+}
+
+.mobile-nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--brand-light);
+  border-radius: 2px;
+  transition: transform 0.22s ease, opacity 0.18s ease;
+  transform-origin: center;
+}
+
+.mobile-nav.open .mobile-nav-toggle span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.mobile-nav.open .mobile-nav-toggle span:nth-child(2) { opacity: 0; }
+.mobile-nav.open .mobile-nav-toggle span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-nav-menu {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  min-width: 260px;
+  max-width: calc(100vw - 28px);
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  background: rgba(20, 12, 4, 0.94);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 8px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top right;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.mobile-nav.open .mobile-nav-menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.mobile-nav-menu button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 9px 12px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: 'Dosis', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.mobile-nav-menu button:hover,
+.mobile-nav-menu button:focus-visible {
+  background: rgba(251, 146, 60, 0.18);
+  color: var(--highlight);
+  outline: none;
+}
+
+.mobile-nav-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.mobile-nav-row button {
+  flex: 1;
+  text-align: center;
+  background: rgba(233, 184, 114, 0.08);
+  border: 1px solid rgba(233, 184, 114, 0.12);
+}
+
+.mobile-nav-wide {
+  background: rgba(233, 184, 114, 0.08) !important;
+  border: 1px solid rgba(233, 184, 114, 0.12) !important;
+  text-align: center !important;
+}
+
+.mobile-nav-divider {
+  height: 1px;
+  background: rgba(233, 184, 114, 0.18);
+  margin: 8px 4px;
+}
+
+.mobile-nav-slides {
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.mobile-nav-slides button {
+  font-size: 12.5px;
+  font-weight: 500;
+  padding: 7px 12px;
+  color: var(--text-soft);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-nav-slides button.active {
+  background: rgba(251, 146, 60, 0.22);
+  color: var(--highlight);
+  font-weight: 700;
+}
+
+/* Scrollbar in the slide list — subtle, warm */
+.mobile-nav-menu ::-webkit-scrollbar { width: 6px; }
+.mobile-nav-menu ::-webkit-scrollbar-thumb {
+  background: rgba(233, 184, 114, 0.25);
+  border-radius: 3px;
+}
+
+/* Activate mobile nav and hide reveal's native controls on narrow viewports. */
+@media (max-width: 900px) {
+  .mobile-nav { display: block; }
+  .reveal .controls { display: none !important; }
+
+  /* Nudge the slide-number pill out of the toggle button's way */
+  .reveal .slide-number {
+    left: 8px;
+    right: auto;
+  }
+}
+
+/* Always hide mobile nav in PDF export modes (also guarded in JS) */
+html.print-pdf .mobile-nav,
+html.pdf-mode .mobile-nav {
+  display: none !important;
+}
+
+/* -------------------------------------------------------------------------
  * Print / PDF export
  * ------------------------------------------------------------------------- */
 
